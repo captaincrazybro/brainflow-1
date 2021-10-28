@@ -31,7 +31,7 @@ def main():
     params = BrainFlowInputParams()
     board_id = 0
     params.ip_port = 0
-    params.serial_port = ""
+    params.serial_port = "/dev/ttyUSB0"
     params.mac_address = ""
     params.other_info = ""
     params.serial_number = ""
@@ -39,20 +39,20 @@ def main():
     params.ip_protocol = 0
     params.timeout = 0
     params.file = ""
+    streamerparams = ""
 
     board = BoardShim(board_id, params)
     board.prepare_session()
 
-    # board.start_stream () # use this for default options
     board.start_stream(45000, args.streamer_params)
-    time.sleep(10)
-    # data = board.get_current_board_data (256) # get latest 256 packages or less, doesnt remove them from internal buffer
-    data = board.get_board_data()  # get all data and remove it from internal buffer
+    for i in range(10):
+        time.sleep(1)
+        board.insert_marker(i + 1)
+    data = board.get_board_data()
     board.stop_stream()
     board.release_session()
 
     print(data)
-
 
 if __name__ == "__main__":
     main()
