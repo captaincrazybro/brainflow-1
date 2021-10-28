@@ -44,7 +44,7 @@ def main():
     board = BoardShim(board_id, params)
     board.prepare_session()
 
-    board.start_stream(45000, args.streamer_params)
+    board.start_stream(45000, streamerparams)
     for i in range(10):
         time.sleep(1)
         board.insert_marker(i + 1)
