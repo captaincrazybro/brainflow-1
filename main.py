@@ -58,7 +58,7 @@ def main():
         for element in arr:
             str += f'{element}, '
         str += "]\n"
-        file.write(f'{element}\n')
+        file.write(f'{str}\n')
     file.close()
 
 if __name__ == "__main__":
