@@ -51,7 +51,14 @@ def main():
     data = board.get_board_data()  # get all data and remove it from internal buffer
     board.stop_stream()
     board.release_session()
+    file = open("log.txt", "w")
+    for element in data:
+        file.write(f'{element } \n')
+    #print(data)
+    #newData = str(data)
+    #file = open("log.txt")
+    #file.write(data)
+    file.close()
 
-    print(data)
 if __name__ == "__main__":
     main()
